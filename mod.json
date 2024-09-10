@@ -1,0 +1,18 @@
+{
+	"geode": "3.5.0",
+	"gd": {
+		"win": "2.206",
+		"android": "2.206",
+		"mac": "2.206",
+		"ios": "2.206"
+	},
+	"id": "sorkopiko.saveretry",
+	"name": "SaveRetry",
+	"version": "v1.0.0",
+	"developer": "SorkoPiko",
+	"description": "Continuously tries to upload your save until it suceeds",
+	"links": {
+		"source": "https://github.com/SorkoPiko/SaveRetry",
+		"community": "https://discord.gg/8uPFxhxBX9"
+	}
+}
