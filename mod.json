@@ -7,12 +7,19 @@
 		"ios": "2.206"
 	},
 	"id": "sorkopiko.saveretry",
-	"name": "SaveRetry",
-	"version": "v1.0.0",
+	"name": "Save Retry",
+	"version": "v1.0.0-prerelease.1",
 	"developer": "SorkoPiko",
-	"description": "Continuously tries to upload your save until it suceeds",
+	"description": "Continuously tries to upload your save until it succeeds",
 	"links": {
 		"source": "https://github.com/SorkoPiko/SaveRetry",
 		"community": "https://discord.gg/8uPFxhxBX9"
-	}
+	},
+	"dependencies": [
+		{
+			"id": "geode.node-ids",
+			"version": ">=v1.13.2",
+			"importance": "required"
+		}
+	]
 }

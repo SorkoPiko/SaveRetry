@@ -1,4 +1,4 @@
-# Template Changelog
+# Save Retry Changelog
 
 ## 1.0.0
-* Edit this file to change your mod's changelog.
+* Initial release, with simple retry logic.
