@@ -11,6 +11,7 @@ class $modify(SRAccountLayer, AccountLayer) {
         CCMenu* m_cancelMenu;
         CCLabelBMFont* m_backupLabel;
         int m_attempts = 1;
+        bool m_cancelled = false;
     };
 
     void customSetup() {
@@ -51,26 +52,23 @@ class $modify(SRAccountLayer, AccountLayer) {
             NotificationIcon::Info
         );
         notif->show();
-        m_fields->m_cancelButton->removeFromParent();
-        m_fields->m_cancelButton = nullptr;
+        m_fields->m_cancelButton->setVisible(false);
+        m_fields->m_cancelMenu->setEnabled(false);
+        m_fields->m_cancelled = true;
     }
 
     void customShowLoadingUI() {
         m_fields->m_cancelMenu->setEnabled(true);
         m_fields->m_backupLabel->setString(fmt::format("Attempt {}", m_fields->m_attempts).c_str());
         m_fields->m_backupLabel->setVisible(true);
-        if (m_fields->m_cancelButton) {
-            m_fields->m_cancelButton->setVisible(true);
-        }
+        m_fields->m_cancelButton->setVisible(true);
     }
 
     void customHideLoadingUI() {
         m_fields->m_attempts = 1;
         m_fields->m_cancelMenu->setEnabled(false);
         m_fields->m_backupLabel->setVisible(false);
-        if (m_fields->m_cancelButton) {
-            m_fields->m_cancelButton->setVisible(false);
-        }
+        m_fields->m_cancelButton->setVisible(false);
     }
 
     void incrementAttempt() {
@@ -78,10 +76,19 @@ class $modify(SRAccountLayer, AccountLayer) {
         m_fields->m_backupLabel->setString(fmt::format("Attempt {}", m_fields->m_attempts).c_str());
     }
 
+    void showAttempts() {
+        std::string label = fmt::format("Backup successful\n({} attempts)", m_fields->m_attempts);
+        if (m_fields->m_attempts == 1) {
+            label = "Backup successful\n(1 attempt)";
+        }
+        m_textArea->setString(label);
+        m_textArea->colorAllCharactersTo({0, 255, 0});
+    }
+
     void backupAccountFailed(const BackupAccountError p0, const int p1) {
         log::info("{} {}", static_cast<int>(p0), p1);
 
-        if (static_cast<int>(p0) == -1 && m_fields->m_cancelButton) {
+        if (static_cast<int>(p0) == -1 && !m_fields->m_cancelled) {
             incrementAttempt();
             const auto gjam = GJAccountManager::sharedState();
             const float profile = gjam->m_gameManagerSize * 0.00000095367;
@@ -96,35 +103,33 @@ class $modify(SRAccountLayer, AccountLayer) {
             return;
         }
         customHideLoadingUI();
-        m_fields->m_attempts = 1;
 
         AccountLayer::backupAccountFailed(p0, p1);
     }
 
     void backupAccountFinished() {
         AccountLayer::backupAccountFinished();
+        showAttempts();
         customHideLoadingUI();
-        m_fields->m_attempts = 1;
     }
 
     void syncAccountFailed(const BackupAccountError p0, const int p1) {
         log::info("{} {}", static_cast<int>(p0), p1);
 
-        if (static_cast<int>(p0) == -1 && m_fields->m_cancelButton) {
+        if (static_cast<int>(p0) == -1 && !m_fields->m_cancelled) {
             incrementAttempt();
             this->doSync();
             return;
         }
         customHideLoadingUI();
-        m_fields->m_attempts = 1;
 
         AccountLayer::syncAccountFailed(p0, p1);
     }
 
     void syncAccountFinished() {
         AccountLayer::syncAccountFinished();
+        showAttempts();
         customHideLoadingUI();
-        m_fields->m_attempts = 1;
     }
 
     void FLAlert_Clicked(FLAlertLayer *p0, bool p1) {
