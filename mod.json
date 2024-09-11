@@ -15,6 +15,14 @@
 		"source": "https://github.com/SorkoPiko/SaveRetry",
 		"community": "https://discord.gg/8uPFxhxBX9"
 	},
+	"tags": [
+		"online",
+		"enhancement",
+		"interface",
+		"bugfix",
+		"utility",
+		"performance"
+	],
 	"dependencies": [
 		{
 			"id": "geode.node-ids",

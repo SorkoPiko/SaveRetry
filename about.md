@@ -9,4 +9,6 @@ This removes the need to spam save until it finally uploads.
 - Shows save attempts.
 - Adds a cancel button to stop endlessly retrying.
 
+Thanks [Alphalaneous](https://github.com/Alphalaneous) for the logo fixes!
+
 **one-day mod** challenge (6/7)
