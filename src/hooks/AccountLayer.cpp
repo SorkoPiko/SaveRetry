@@ -1,5 +1,6 @@
 #include <Geode/modify/AccountLayer.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
+#include <Geode/ui/Notification.hpp>
 
 using namespace geode::prelude;
 
