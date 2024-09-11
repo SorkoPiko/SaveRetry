@@ -9,4 +9,4 @@ This removes the need to spam save until it finally uploads.
 - Shows save attempts.
 - Adds a cancel button to stop endlessly retrying.
 
-**one-day mod** challenge (1/7)
+**one-day mod** challenge (6/7)
