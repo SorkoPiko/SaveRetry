@@ -2,6 +2,7 @@
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/GJAccountManager.hpp>
 #include <Geode/ui/Notification.hpp>
+#include <Geode/binding/TextArea.hpp>
 
 using namespace geode::prelude;
 
