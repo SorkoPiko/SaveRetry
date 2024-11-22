@@ -1,5 +1,5 @@
 {
-	"geode": "4.0.0-alpha.1",
+	"geode": "4.0.1",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -8,7 +8,7 @@
 	},
 	"id": "sorkopiko.saveretry",
 	"name": "Save Retry",
-	"version": "v1.0.1",
+	"version": "v1.0.2",
 	"developer": "SorkoPiko",
 	"description": "Continuously tries to upload your save until it succeeds",
 	"links": {
